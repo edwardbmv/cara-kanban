@@ -25,16 +25,33 @@
   "tasks": [
     {
       "id": "task-001",
-      "title": "Build Kanban Board",
-      "description": "Project management dashboard to track Cara's work",
+      "title": "Build Kanban Board V1",
+      "description": "Project management dashboard to track Cara's work - view-only version",
       "lane": "infra",
-      "column": "in-progress",
-      "timeSpent": 0,
-      "costEstimate": 0.50,
-      "outputs": [],
+      "column": "done",
+      "timeSpent": 45,
+      "costEstimate": 1.50,
+      "outputs": [
+        { "type": "link", "url": "https://cara-kanban.vercel.app", "label": "Live App" },
+        { "type": "link", "url": "https://github.com/edwardbmv/cara-kanban", "label": "GitHub Repo" }
+      ],
       "createdAt": "2026-01-30T17:02:00Z",
-      "updatedAt": "2026-01-30T17:02:00Z",
+      "updatedAt": "2026-01-31T02:06:00Z",
       "startedAt": "2026-01-30T17:02:00Z",
+      "completedAt": "2026-01-31T02:06:00Z"
+    },
+    {
+      "id": "task-005",
+      "title": "Kanban Board - Add CRUD UI",
+      "description": "Add ability to create/edit/move tasks from the UI (drag-and-drop, add task form)",
+      "lane": "infra",
+      "column": "queued",
+      "timeSpent": 0,
+      "costEstimate": 2.00,
+      "outputs": [],
+      "createdAt": "2026-01-31T02:06:00Z",
+      "updatedAt": "2026-01-31T02:06:00Z",
+      "startedAt": null,
       "completedAt": null
     },
     {
