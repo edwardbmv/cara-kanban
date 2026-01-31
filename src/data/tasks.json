@@ -73,14 +73,14 @@
     {
       "id": "task-003",
       "title": "TEAS Platform MVP",
-      "description": "Web app for students to practice TEAS questions",
+      "description": "Practice test with email gate, results + skill gap analysis. 10 Q per section, nurse.org styling. Work 2-7am.",
       "lane": "teas",
-      "column": "ideas",
+      "column": "queued",
       "timeSpent": 0,
-      "costEstimate": 0,
+      "costEstimate": 15.00,
       "outputs": [],
       "createdAt": "2026-01-30T17:02:00Z",
-      "updatedAt": "2026-01-30T17:02:00Z",
+      "updatedAt": "2026-01-31T05:04:00Z",
       "startedAt": null,
       "completedAt": null
     },
@@ -145,6 +145,22 @@
       "updatedAt": "2026-01-31T04:48:00Z",
       "startedAt": null,
       "completedAt": null
+    },
+    {
+      "id": "task-009",
+      "title": "Science Question Images",
+      "description": "Created 18 images for science questions (11 Imagen 4.0 anatomy, 7 Matplotlib charts)",
+      "lane": "teas",
+      "column": "done",
+      "timeSpent": 25,
+      "costEstimate": 2.00,
+      "outputs": [
+        { "type": "file", "path": "~/Documents/Cara Daily Logs/2026-01-30/science-images/", "label": "18 PNG images" }
+      ],
+      "createdAt": "2026-01-31T05:14:00Z",
+      "updatedAt": "2026-01-31T05:38:00Z",
+      "startedAt": "2026-01-31T05:14:00Z",
+      "completedAt": "2026-01-31T05:38:00Z"
     }
   ]
 }
