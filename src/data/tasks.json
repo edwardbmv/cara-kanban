@@ -73,15 +73,17 @@
     {
       "id": "task-003",
       "title": "TEAS Platform MVP",
-      "description": "Practice test with email gate, results + skill gap analysis. 10 Q per section, nurse.org styling. Work 2-7am.",
+      "description": "Django app: landing page, 40-question practice test, email gate, results with skill breakdown. nurse.org styling.",
       "lane": "teas",
-      "column": "queued",
-      "timeSpent": 0,
+      "column": "in-progress",
+      "timeSpent": 60,
       "costEstimate": 15.00,
-      "outputs": [],
+      "outputs": [
+        { "type": "file", "path": "~/Projects/teas_platform/", "label": "Django Project" }
+      ],
       "createdAt": "2026-01-30T17:02:00Z",
-      "updatedAt": "2026-01-31T05:04:00Z",
-      "startedAt": null,
+      "updatedAt": "2026-01-31T05:55:00Z",
+      "startedAt": "2026-01-31T05:48:00Z",
       "completedAt": null
     },
     {
@@ -161,6 +163,20 @@
       "updatedAt": "2026-01-31T05:38:00Z",
       "startedAt": "2026-01-31T05:14:00Z",
       "completedAt": "2026-01-31T05:38:00Z"
+    },
+    {
+      "id": "task-010",
+      "title": "Test Dual OpenClaw Instances",
+      "description": "Experiment: Run two full OpenClaw gateways with shared memory (MEMORY.md + daily logs). Compare quality vs sub-processes for parallel tasks. Test when workload justifies it.",
+      "lane": "infra",
+      "column": "ideas",
+      "timeSpent": 0,
+      "costEstimate": 5.00,
+      "outputs": [],
+      "createdAt": "2026-01-31T19:57:00Z",
+      "updatedAt": "2026-01-31T19:57:00Z",
+      "startedAt": null,
+      "completedAt": null
     }
   ]
 }
