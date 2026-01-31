@@ -207,6 +207,20 @@
       "updatedAt": "2026-01-31T21:01:00Z",
       "startedAt": null,
       "completedAt": null
+    },
+    {
+      "id": "task-013",
+      "title": "Enable Peekaboo (Mac UI Automation)",
+      "description": "Grant Peekaboo permissions (Screen Recording + Accessibility) so Cara can control macOS autonomously — click buttons, launch apps, navigate menus, attach browser tabs without human intervention.",
+      "lane": "infra",
+      "column": "queued",
+      "timeSpent": 0,
+      "costEstimate": 0,
+      "outputs": [],
+      "createdAt": "2026-01-31T21:18:00Z",
+      "updatedAt": "2026-01-31T21:18:00Z",
+      "startedAt": null,
+      "completedAt": null
     }
   ]
 }
