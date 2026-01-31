@@ -191,6 +191,22 @@
       "updatedAt": "2026-01-31T20:00:00Z",
       "startedAt": null,
       "completedAt": null
+    },
+    {
+      "id": "task-012",
+      "title": "AI vs Human Coding Test",
+      "description": "Head-to-head test with CTO's team: Same Jira tickets, blind evaluation, track time/quality/review cycles. Zero risk setup (read-only access, fork/patch workflow). Prove AI value with real data.",
+      "lane": "other",
+      "column": "queued",
+      "timeSpent": 5,
+      "costEstimate": 2.00,
+      "outputs": [
+        { "type": "file", "path": "drafts/ai-coding-test-proposal.md", "label": "Email Draft" }
+      ],
+      "createdAt": "2026-01-31T21:01:00Z",
+      "updatedAt": "2026-01-31T21:01:00Z",
+      "startedAt": null,
+      "completedAt": null
     }
   ]
 }
