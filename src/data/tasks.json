@@ -221,6 +221,20 @@
       "updatedAt": "2026-01-31T21:18:00Z",
       "startedAt": null,
       "completedAt": null
+    },
+    {
+      "id": "task-014",
+      "title": "Dynamic Model Switching",
+      "description": "Add ability to switch models for cost optimization. Options: (1) Manual — user requests 'use Sonnet for this', (2) Automatic — Cara chooses model based on task complexity (Opus for complex reasoning, Sonnet for routine tasks, Haiku for simple queries). Could save 50-70% on routine work.",
+      "lane": "infra",
+      "column": "ideas",
+      "timeSpent": 0,
+      "costEstimate": 0,
+      "outputs": [],
+      "createdAt": "2026-01-31T23:51:00Z",
+      "updatedAt": "2026-01-31T23:51:00Z",
+      "startedAt": null,
+      "completedAt": null
     }
   ]
 }
