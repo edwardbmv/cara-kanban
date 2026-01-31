@@ -177,6 +177,20 @@
       "updatedAt": "2026-01-31T19:57:00Z",
       "startedAt": null,
       "completedAt": null
+    },
+    {
+      "id": "task-011",
+      "title": "Hierarchical Multi-Agent Architecture",
+      "description": "CEO pattern: Cara as coordinator directing specialized agents (Dev, Marketing, Research). Shared memory files, I delegate tasks and QA results before they reach Edward. Requires: persistent agent configs, agent-specific system prompts, task queue, review workflow.",
+      "lane": "infra",
+      "column": "ideas",
+      "timeSpent": 0,
+      "costEstimate": 10.00,
+      "outputs": [],
+      "createdAt": "2026-01-31T20:00:00Z",
+      "updatedAt": "2026-01-31T20:00:00Z",
+      "startedAt": null,
+      "completedAt": null
     }
   ]
 }
