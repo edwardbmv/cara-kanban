@@ -57,18 +57,18 @@
     {
       "id": "task-002",
       "title": "Generate TEAS Questions",
-      "description": "Complete question bank: Math 248✓, English 250✓, Science 50/250, Reading 45/250",
+      "description": "Complete question bank: Math 248✓, English 250✓, Science 250✓, Reading 250✓ — ALL DONE",
       "lane": "teas",
-      "column": "queued",
-      "timeSpent": 180,
-      "costEstimate": 15.00,
+      "column": "done",
+      "timeSpent": 300,
+      "costEstimate": 25.00,
       "outputs": [
-        { "type": "file", "path": "teas-questions/", "label": "Question JSONs" }
+        { "type": "file", "path": "~/Documents/Cara Daily Logs/2026-01-30/", "label": "Question JSONs" }
       ],
       "createdAt": "2026-01-29T00:00:00Z",
-      "updatedAt": "2026-01-30T00:00:00Z",
-      "startedAt": null,
-      "completedAt": null
+      "updatedAt": "2026-01-31T04:48:00Z",
+      "startedAt": "2026-01-29T23:00:00Z",
+      "completedAt": "2026-01-31T03:00:00Z"
     },
     {
       "id": "task-003",
@@ -99,6 +99,52 @@
       "updatedAt": "2026-01-30T16:50:00Z",
       "startedAt": "2026-01-30T16:30:00Z",
       "completedAt": "2026-01-30T16:50:00Z"
+    },
+    {
+      "id": "task-006",
+      "title": "X/Twitter Account Setup",
+      "description": "Created @Carayim20 account, configured bird CLI, first tweet posted",
+      "lane": "infra",
+      "column": "done",
+      "timeSpent": 15,
+      "costEstimate": 0.50,
+      "outputs": [
+        { "type": "link", "url": "https://x.com/Carayim20", "label": "X Profile" }
+      ],
+      "createdAt": "2026-01-31T04:27:00Z",
+      "updatedAt": "2026-01-31T04:37:00Z",
+      "startedAt": "2026-01-31T04:27:00Z",
+      "completedAt": "2026-01-31T04:37:00Z"
+    },
+    {
+      "id": "task-007",
+      "title": "Daily Export Cron Job",
+      "description": "3 AM daily archive of full session transcripts + summaries",
+      "lane": "infra",
+      "column": "done",
+      "timeSpent": 10,
+      "costEstimate": 0.25,
+      "outputs": [
+        { "type": "file", "path": "~/Documents/Cara Daily Logs/", "label": "Daily Archives" }
+      ],
+      "createdAt": "2026-01-30T12:00:00Z",
+      "updatedAt": "2026-01-31T04:24:00Z",
+      "startedAt": "2026-01-30T12:00:00Z",
+      "completedAt": "2026-01-31T04:24:00Z"
+    },
+    {
+      "id": "task-008",
+      "title": "TEAS Cross-Validation with Gemini",
+      "description": "Validate all 1000 questions with Gemini to catch errors",
+      "lane": "teas",
+      "column": "queued",
+      "timeSpent": 0,
+      "costEstimate": 5.00,
+      "outputs": [],
+      "createdAt": "2026-01-31T04:48:00Z",
+      "updatedAt": "2026-01-31T04:48:00Z",
+      "startedAt": null,
+      "completedAt": null
     }
   ]
 }
