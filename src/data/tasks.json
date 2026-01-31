@@ -1,0 +1,87 @@
+{
+  "lanes": [
+    {
+      "id": "teas",
+      "name": "TEAS Study Guide",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "infra",
+      "name": "Infrastructure/Tools",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "other",
+      "name": "Other Projects",
+      "color": "#10b981"
+    }
+  ],
+  "columns": [
+    { "id": "ideas", "name": "Ideas" },
+    { "id": "queued", "name": "Queued" },
+    { "id": "in-progress", "name": "In Progress" },
+    { "id": "done", "name": "Done" }
+  ],
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Build Kanban Board",
+      "description": "Project management dashboard to track Cara's work",
+      "lane": "infra",
+      "column": "in-progress",
+      "timeSpent": 0,
+      "costEstimate": 0.50,
+      "outputs": [],
+      "createdAt": "2026-01-30T17:02:00Z",
+      "updatedAt": "2026-01-30T17:02:00Z",
+      "startedAt": "2026-01-30T17:02:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "task-002",
+      "title": "Generate TEAS Questions",
+      "description": "Complete question bank: Math 248✓, English 250✓, Science 50/250, Reading 45/250",
+      "lane": "teas",
+      "column": "queued",
+      "timeSpent": 180,
+      "costEstimate": 15.00,
+      "outputs": [
+        { "type": "file", "path": "teas-questions/", "label": "Question JSONs" }
+      ],
+      "createdAt": "2026-01-29T00:00:00Z",
+      "updatedAt": "2026-01-30T00:00:00Z",
+      "startedAt": null,
+      "completedAt": null
+    },
+    {
+      "id": "task-003",
+      "title": "TEAS Platform MVP",
+      "description": "Web app for students to practice TEAS questions",
+      "lane": "teas",
+      "column": "ideas",
+      "timeSpent": 0,
+      "costEstimate": 0,
+      "outputs": [],
+      "createdAt": "2026-01-30T17:02:00Z",
+      "updatedAt": "2026-01-30T17:02:00Z",
+      "startedAt": null,
+      "completedAt": null
+    },
+    {
+      "id": "task-004",
+      "title": "Setup GitHub + Vercel",
+      "description": "Development infrastructure for deploying web apps",
+      "lane": "infra",
+      "column": "done",
+      "timeSpent": 15,
+      "costEstimate": 0,
+      "outputs": [
+        { "type": "link", "url": "https://github.com/edwardbmv", "label": "GitHub Account" }
+      ],
+      "createdAt": "2026-01-30T16:30:00Z",
+      "updatedAt": "2026-01-30T16:50:00Z",
+      "startedAt": "2026-01-30T16:30:00Z",
+      "completedAt": "2026-01-30T16:50:00Z"
+    }
+  ]
+}
