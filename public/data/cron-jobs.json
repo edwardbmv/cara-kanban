@@ -1,81 +1,13 @@
 [
-  {
-    "id": "aa93f2b5-c7f6-4107-b463-6a3530e002ce",
-    "name": "Daily Morning Brief",
-    "schedule": {"kind": "cron", "expr": "30 7 * * *", "tz": "America/Los_Angeles"},
-    "sessionTarget": "isolated",
-    "enabled": true,
-    "payload": {"kind": "agentTurn", "message": "Generate and send Edward's daily brief via Telegram"},
-    "nextRun": "2026-02-07T07:30:00-08:00"
-  },
-  {
-    "id": "1cc0fd48-2313-47fd-b3ec-3545b22a67c1",
-    "name": "Evening Work Session",
-    "schedule": {"kind": "cron", "expr": "0 22 * * *", "tz": "America/Los_Angeles"},
-    "sessionTarget": "isolated",
-    "enabled": true,
-    "payload": {"kind": "agentTurn", "message": "2-hour autonomous work session"},
-    "nextRun": "2026-02-06T22:00:00-08:00"
-  },
-  {
-    "id": "6a28fe04-0baf-48d5-99d4-bc7c4fabb35f",
-    "name": "End of Day Export",
-    "schedule": {"kind": "cron", "expr": "0 3 * * *", "tz": "America/Los_Angeles"},
-    "sessionTarget": "isolated",
-    "enabled": true,
-    "payload": {"kind": "agentTurn", "message": "Export daily transcript and summary"},
-    "nextRun": "2026-02-07T03:00:00-08:00"
-  },
-  {
-    "id": "783a990a-4def-4a2a-a0ed-29d8daf1d729",
-    "name": "Resurrection Bundle Backup",
-    "schedule": {"kind": "cron", "expr": "0 3 * * *", "tz": "America/Los_Angeles"},
-    "sessionTarget": "main",
-    "enabled": true,
-    "payload": {"kind": "systemEvent", "text": "Run backup script"},
-    "nextRun": "2026-02-07T03:00:00-08:00"
-  },
-  {
-    "id": "2f430b58-b9c3-4018-b482-5cf47e4f92b1",
-    "name": "TEAS Daily Nurture Emails",
-    "schedule": {"kind": "cron", "expr": "0 7 * * *", "tz": "America/Los_Angeles"},
-    "sessionTarget": "isolated",
-    "enabled": true,
-    "payload": {"kind": "agentTurn", "message": "Trigger nurture email endpoint"},
-    "nextRun": "2026-02-07T07:00:00-08:00"
-  },
-  {
-    "id": "6985de40-c69b-45db-8e8a-9afcd4afdb8b",
-    "name": "6-Hour Work Log",
-    "schedule": {"kind": "cron", "expr": "0 0,6,12,18 * * *", "tz": "America/Los_Angeles"},
-    "sessionTarget": "isolated",
-    "enabled": true,
-    "payload": {"kind": "agentTurn", "message": "Log work to calendar"},
-    "nextRun": "2026-02-07T00:00:00-08:00"
-  },
-  {
-    "id": "6de0bf70-06e6-4b68-984d-22639557f48f",
-    "name": "Email Monitor",
-    "schedule": {"kind": "every", "everyMs": 180000},
-    "sessionTarget": "main",
-    "enabled": true,
-    "payload": {"kind": "systemEvent", "text": "Check for new emails"}
-  },
-  {
-    "id": "f423eba1-979f-4277-a6b5-f8e4d15b7413",
-    "name": "Weekly Strategic Review",
-    "schedule": {"kind": "cron", "expr": "0 18 * * 0", "tz": "America/Los_Angeles"},
-    "sessionTarget": "isolated",
-    "enabled": true,
-    "payload": {"kind": "agentTurn", "message": "Weekly strategic review"},
-    "nextRun": "2026-02-09T18:00:00-08:00"
-  },
-  {
-    "id": "26641fe3-19ca-49d4-8501-2721ec0e5567",
-    "name": "OpenClaw Update Check",
-    "schedule": {"kind": "every", "everyMs": 259200000},
-    "sessionTarget": "isolated",
-    "enabled": true,
-    "payload": {"kind": "agentTurn", "message": "Check for OpenClaw updates"}
-  }
+  {"id": "6de0bf70-06e6-4b68-984d-22639557f48f", "name": "Email Monitor", "enabled": true, "schedule": {"kind": "every", "everyMs": 180000}, "nextRun": "every 3 min"},
+  {"id": "9e3e8750-5937-46c2-a1ea-4c3cecb14b8f", "name": "Vercel Data Sync", "enabled": true, "schedule": {"kind": "every", "everyMs": 900000}, "nextRun": "every 15 min"},
+  {"id": "aa93f2b5-c7f6-4107-b463-6a3530e002ce", "name": "Daily Morning Brief", "enabled": true, "schedule": {"kind": "cron", "expr": "30 7 * * *", "tz": "America/Los_Angeles"}, "nextRun": "7:30 AM daily"},
+  {"id": "0f7211ef-5aa3-4e9d-90b4-7f5853830a62", "name": "Good morning text", "enabled": true, "schedule": {"kind": "at", "at": "2026-02-07T16:30:00.000Z"}, "nextRun": "8:30 AM today (Feb 7)"},
+  {"id": "1cc0fd48-2313-47fd-b3ec-3545b22a67c1", "name": "Evening Work Session", "enabled": true, "schedule": {"kind": "cron", "expr": "0 22 * * *", "tz": "America/Los_Angeles"}, "nextRun": "10:00 PM daily"},
+  {"id": "6a28fe04-0baf-48d5-99d4-bc7c4fabb35f", "name": "End of Day Export", "enabled": true, "schedule": {"kind": "cron", "expr": "0 3 * * *", "tz": "America/Los_Angeles"}, "nextRun": "3:00 AM daily"},
+  {"id": "783a990a-4def-4a2a-a0ed-29d8daf1d729", "name": "Cara Resurrection Bundle", "enabled": true, "schedule": {"kind": "cron", "expr": "0 3 * * *", "tz": "America/Los_Angeles"}, "nextRun": "3:00 AM daily"},
+  {"id": "2f430b58-b9c3-4018-b482-5cf47e4f92b1", "name": "TEAS Daily Nurture Emails", "enabled": true, "schedule": {"kind": "cron", "expr": "0 7 * * *", "tz": "America/Los_Angeles"}, "nextRun": "7:00 AM daily"},
+  {"id": "f423eba1-979f-4277-a6b5-f8e4d15b7413", "name": "Weekly Strategic Review", "enabled": true, "schedule": {"kind": "cron", "expr": "0 18 * * 0", "tz": "America/Los_Angeles"}, "nextRun": "6:00 PM Sundays"},
+  {"id": "26641fe3-19ca-49d4-8501-2721ec0e5567", "name": "OpenClaw Update Check & Analysis", "enabled": true, "schedule": {"kind": "every", "everyMs": 259200000}, "nextRun": "every 3 days"},
+  {"id": "737b60e2-f138-49d2-91b4-87327f7a469a", "name": "Proxy fix follow-up", "enabled": true, "schedule": {"kind": "cron", "expr": "0 11 4 2 *", "tz": "America/Los_Angeles"}, "nextRun": "Feb 4, 11 AM (annual)"}
 ]
