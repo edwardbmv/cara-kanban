@@ -1,134 +1,142 @@
 [
   {
+    "timestamp": "2026-02-06T23:05:00.000Z",
+    "action": "Kanban Snapshot Feature",
+    "category": "file",
+    "details": "Added session snapshot button and activity feed sorting to Cara HQ dashboard",
+    "instance": "Cara HQ / Infrastructure"
+  },
+  {
+    "timestamp": "2026-02-06T22:45:00.000Z",
+    "action": "TEAS Analytics v443 Deployed",
+    "category": "exec",
+    "details": "Fixed QuizCompletion creation for practice tests in capture_email endpoint",
+    "instance": "Cara HQ / TEAS Dev"
+  },
+  {
+    "timestamp": "2026-02-06T22:30:00.000Z",
+    "action": "Jira Ticket Analysis",
+    "category": "search",
+    "details": "Identified 10 fixable EDU tickets ranked by confidence level",
+    "instance": "Cara HQ / Jira Work"
+  },
+  {
+    "timestamp": "2026-02-06T22:00:00.000Z",
+    "action": "QMD Research",
+    "category": "search",
+    "details": "Analyzed Tobi Lütke's QMD semantic search tool for potential OpenClaw integration",
+    "instance": "Main"
+  },
+  {
     "timestamp": "2026-02-06T20:00:00.000Z",
     "action": "Started Mission Control build",
     "category": "exec",
-    "details": "Created NextJS dashboard project for activity tracking, calendar, and global search"
+    "details": "Created NextJS dashboard project for activity tracking, calendar, and global search",
+    "instance": "Cara HQ / Infrastructure"
   },
   {
     "timestamp": "2026-02-06T19:45:00.000Z",
     "action": "ActiveCampaign API Analysis",
     "category": "search",
-    "details": "Pulled 12-month campaign data for nurseorg and TMR via API"
+    "details": "Pulled 12-month campaign data for nurseorg and TMR via API",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-06T19:30:00.000Z",
     "action": "Created AC Evaluation Report",
     "category": "file",
-    "details": "Generated comprehensive ActiveCampaign evaluation at ~/Documents/ActiveCampaign_Full_Evaluation_2026-02-06.md"
+    "details": "Generated comprehensive ActiveCampaign evaluation at ~/Documents/ActiveCampaign_Full_Evaluation_2026-02-06.md",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-06T18:00:00.000Z",
     "action": "Bland AI Prank Call",
     "category": "exec",
-    "details": "Called Justin about fake parking ticket. He figured it out fast 😂"
+    "details": "Called Justin about fake parking ticket. He figured it out fast 😂",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-06T17:30:00.000Z",
     "action": "ACHQ Dashboard Access",
     "category": "browser",
-    "details": "Logged into ActiveCampaign HQ dashboard with MFA, retrieved account stats"
+    "details": "Logged into ActiveCampaign HQ dashboard with MFA, retrieved account stats",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-06T16:00:00.000Z",
     "action": "Social Media Warming",
     "category": "browser",
-    "details": "X/Twitter: 3 likes, 2 follows. Instagram: 1 like on nursing reel"
+    "details": "X/Twitter: 3 likes, 2 follows. Instagram: 1 like on nursing reel",
+    "instance": "Cron"
   },
   {
     "timestamp": "2026-02-06T15:00:00.000Z",
     "action": "Market Research Report",
     "category": "file",
-    "details": "Completed comprehensive test prep market analysis. Top pick: PTCB (85% win chance)"
+    "details": "Completed comprehensive test prep market analysis. Top pick: PTCB (85% win chance)",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-06T14:00:00.000Z",
     "action": "EDU-1071 Implementation",
     "category": "file",
-    "details": "Added image search filter to nurse.org blog edit modal. Branch: feature/EDU-1071-image-search-filter"
+    "details": "Added image search filter to nurse.org blog edit modal. Branch: feature/EDU-1071-image-search-filter",
+    "instance": "Cara HQ / Jira Work"
   },
   {
     "timestamp": "2026-02-06T12:00:00.000Z",
     "action": "TEAS Platform v424",
     "category": "exec",
-    "details": "Deployed reading passages fix, progress bar improvements, analytics routes"
+    "details": "Deployed reading passages fix, progress bar improvements, analytics routes",
+    "instance": "Cara HQ / TEAS Dev"
   },
   {
     "timestamp": "2026-02-06T10:00:00.000Z",
     "action": "OpenClaw Updated",
     "category": "exec",
-    "details": "Updated from 2026.2.1 to 2026.2.3-1"
+    "details": "Updated from 2026.2.1 to 2026.2.3-1",
+    "instance": "Cron"
   },
   {
     "timestamp": "2026-02-05T22:00:00.000Z",
     "action": "Extended Work Mode Session",
     "category": "other",
-    "details": "Multi-hour autonomous work on TEAS improvements and QA"
+    "details": "Multi-hour autonomous work on TEAS improvements and QA",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-05T18:00:00.000Z",
     "action": "Ralph Loops Test",
     "category": "exec",
-    "details": "Verified Ralph Loops working (~23 seconds test, $0.06)"
+    "details": "Verified Ralph Loops working (~23 seconds test, $0.06)",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-04T20:00:00.000Z",
     "action": "EDU-1443 Fix Completed",
     "category": "file",
-    "details": "Fixed CT button overflow issue. PR #2290 submitted"
+    "details": "Fixed CT button overflow issue. PR #2290 submitted",
+    "instance": "Cara HQ / Jira Work"
   },
   {
     "timestamp": "2026-02-04T15:00:00.000Z",
     "action": "CloudFront Session Bug Fix",
     "category": "exec",
-    "details": "Fixed CSRF_TRUSTED_ORIGINS issue after 3-hour debugging session"
+    "details": "Fixed CSRF_TRUSTED_ORIGINS issue after 3-hour debugging session",
+    "instance": "Cara HQ / TEAS Dev"
   },
   {
     "timestamp": "2026-02-03T22:00:00.000Z",
     "action": "Resurrection Bundle Created",
     "category": "file",
-    "details": "Created cara-resurrection-bundle.sh - 427MB backup system"
+    "details": "Created cara-resurrection-bundle.sh - 427MB backup system",
+    "instance": "Main"
   },
   {
     "timestamp": "2026-02-03T18:00:00.000Z",
     "action": "TEAS QA Complete",
     "category": "other",
-    "details": "Ran comprehensive audit on all 979 questions. Fixed practice test database"
-  },
-  {
-    "timestamp": "2026-02-07T04:53:05.000Z",
-    "action": "Mission Control auto-start configured",
-    "category": "exec",
-    "details": "LaunchAgent installed, service running on boot"
-  },
-  {
-    "timestamp": "2026-02-07T04:53:05.193Z",
-    "action": "Mission Control auto-start configured",
-    "category": "exec",
-    "details": "LaunchAgent installed, service running on boot"
-  },
-  {
-    "timestamp": "2026-02-07T04:53:23.000Z",
-    "action": "Mission Control production setup complete",
-    "category": "exec",
-    "details": "Auto-start on boot, activity logging, real-time cron API"
-  },
-  {
-    "timestamp": "2026-02-07T04:53:23.466Z",
-    "action": "Mission Control production setup complete",
-    "category": "exec",
-    "details": "Auto-start on boot, activity logging, real-time cron API"
-  },
-  {
-    "timestamp": "2026-02-07T04:58:47.000Z",
-    "action": "Combined Cara HQ dashboard launched",
-    "category": "exec",
-    "details": "Merged Mission Control with Kanban board at cara-kanban location"
-  },
-  {
-    "timestamp": "2026-02-07T04:58:47.163Z",
-    "action": "Combined Cara HQ dashboard launched",
-    "category": "exec",
-    "details": "Merged Mission Control with Kanban board at cara-kanban location"
+    "details": "Ran comprehensive audit on all 979 questions. Fixed practice test database",
+    "instance": "Main"
   }
 ]

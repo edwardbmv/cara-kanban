@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import ActivityFeed from '@/components/ActivityFeed';
 import Calendar from '@/components/Calendar';
 import GlobalSearch from '@/components/GlobalSearch';
+import SessionSnapshot from '@/components/SessionSnapshot';
 
 // ==================== TYPES ====================
 interface Output {
@@ -288,6 +289,7 @@ function KanbanBoard() {
 export default function CaraDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('kanban');
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+  const [snapshotOpen, setSnapshotOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -315,8 +317,16 @@ export default function CaraDashboard() {
               <p className="text-sm text-gray-400">Mission Control & Workboard</p>
             </div>
           </div>
-          <div className="text-sm text-gray-400">
-            {lastUpdated.toLocaleTimeString()}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSnapshotOpen(true)}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+            >
+              <span>📸</span> Current Snapshot
+            </button>
+            <div className="text-sm text-gray-400">
+              {lastUpdated.toLocaleTimeString()}
+            </div>
           </div>
         </div>
       </header>
@@ -348,6 +358,9 @@ export default function CaraDashboard() {
         {activeTab === 'calendar' && <Calendar key={lastUpdated.toISOString()} />}
         {activeTab === 'search' && <GlobalSearch />}
       </div>
+
+      {/* Session Snapshot Modal */}
+      <SessionSnapshot isOpen={snapshotOpen} onClose={() => setSnapshotOpen(false)} />
     </main>
   );
 }
