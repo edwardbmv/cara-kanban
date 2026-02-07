@@ -9,10 +9,12 @@ interface Session {
   displayName: string;
   model: string;
   totalTokens: number;
+  contextTokens: number;
   updatedAt: number;
   lastMessage?: string;
   currentTask?: string;
   sessionId: string;
+  abortedLastRun?: boolean;
 }
 
 interface SessionData {
@@ -171,13 +173,41 @@ export default function SessionSnapshot({ isOpen, onClose }: { isOpen: boolean; 
                       </div>
                     </div>
 
-                    {/* Stats */}
-                    <div className="text-right text-sm">
+                    {/* Stats & Health */}
+                    <div className="text-right text-sm space-y-1">
+                      {/* Context Usage Bar */}
+                      {session.contextTokens > 0 && (
+                        <div className="w-32">
+                          <div className="flex justify-between text-xs mb-1">
+                            <span className="text-gray-500">Context</span>
+                            <span className={`font-medium ${
+                              (session.totalTokens / session.contextTokens) > 0.8 ? 'text-red-400' :
+                              (session.totalTokens / session.contextTokens) > 0.5 ? 'text-yellow-400' :
+                              'text-green-400'
+                            }`}>
+                              {((session.totalTokens / session.contextTokens) * 100).toFixed(0)}%
+                            </span>
+                          </div>
+                          <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                            <div 
+                              className={`h-full transition-all ${
+                                (session.totalTokens / session.contextTokens) > 0.8 ? 'bg-red-500' :
+                                (session.totalTokens / session.contextTokens) > 0.5 ? 'bg-yellow-500' :
+                                'bg-green-500'
+                              }`}
+                              style={{ width: `${Math.min((session.totalTokens / session.contextTokens) * 100, 100)}%` }}
+                            />
+                          </div>
+                        </div>
+                      )}
                       <div className="text-gray-400">
-                        {(session.totalTokens / 1000).toFixed(1)}k tokens
+                        {(session.totalTokens / 1000).toFixed(1)}k / {(session.contextTokens / 1000).toFixed(0)}k
                       </div>
-                      <div className="text-gray-500">
-                        {formatTime(session.updatedAt)}
+                      <div className="flex items-center justify-end gap-2">
+                        {session.abortedLastRun && (
+                          <span className="text-red-400 text-xs" title="Last run aborted">⚠️</span>
+                        )}
+                        <span className="text-gray-500">{formatTime(session.updatedAt)}</span>
                       </div>
                     </div>
                   </div>
@@ -188,16 +218,27 @@ export default function SessionSnapshot({ isOpen, onClose }: { isOpen: boolean; 
         </div>
 
         {/* Footer */}
-        {data.sessions.length > 0 && (
-          <div className="p-4 border-t border-gray-700 bg-gray-800/50">
-            <div className="flex justify-between text-sm text-gray-400">
-              <span>{data.sessions.length} active session{data.sessions.length !== 1 ? 's' : ''}</span>
-              <span>
-                Total: {(data.sessions.reduce((sum, s) => sum + s.totalTokens, 0) / 1000).toFixed(1)}k tokens
-              </span>
+        {data.sessions.length > 0 && (() => {
+          const totalTokens = data.sessions.reduce((sum, s) => sum + s.totalTokens, 0);
+          const totalContext = data.sessions.reduce((sum, s) => sum + (s.contextTokens || 200000), 0);
+          const avgUsage = totalTokens / totalContext;
+          const abortedCount = data.sessions.filter(s => s.abortedLastRun).length;
+          
+          return (
+            <div className="p-4 border-t border-gray-700 bg-gray-800/50">
+              <div className="flex justify-between text-sm text-gray-400 flex-wrap gap-2">
+                <span>{data.sessions.length} active session{data.sessions.length !== 1 ? 's' : ''}</span>
+                <span>Total: {(totalTokens / 1000).toFixed(1)}k tokens</span>
+                <span className={avgUsage > 0.5 ? 'text-yellow-400' : ''}>
+                  Avg context: {(avgUsage * 100).toFixed(0)}%
+                </span>
+                {abortedCount > 0 && (
+                  <span className="text-red-400">⚠️ {abortedCount} aborted</span>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
       </div>
     </div>
   );

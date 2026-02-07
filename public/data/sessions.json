@@ -7,10 +7,12 @@
       "displayName": "Edward Yim (Main)",
       "model": "claude-opus-4-5",
       "totalTokens": 55968,
+      "contextTokens": 200000,
       "updatedAt": 1770447672677,
       "sessionId": "23eb6b90",
       "currentTask": "Discussing QMD semantic search tool",
-      "lastMessage": "Worth trying if you have large documentation..."
+      "lastMessage": "Worth trying if you have large documentation...",
+      "abortedLastRun": false
     },
     {
       "key": "agent:voice:telegram:group:topic:2",
@@ -19,10 +21,12 @@
       "displayName": "Cara HQ / TEAS Dev",
       "model": "claude-opus-4-5",
       "totalTokens": 151634,
+      "contextTokens": 200000,
       "updatedAt": 1770447655555,
       "sessionId": "64e6463a",
       "currentTask": "TEAS practice test analytics fix (v443)",
-      "lastMessage": "Browser keeps switching tabs, v443 deployed with fix"
+      "lastMessage": "Browser keeps switching tabs, v443 deployed with fix",
+      "abortedLastRun": false
     },
     {
       "key": "agent:voice:telegram:group:topic:1",
@@ -31,10 +35,12 @@
       "displayName": "Cara HQ / Jira Work",
       "model": "claude-opus-4-5",
       "totalTokens": 51975,
+      "contextTokens": 200000,
       "updatedAt": 1770447611630,
       "sessionId": "8951f51d",
       "currentTask": "Identifying fixable EDU Jira tickets",
-      "lastMessage": "10 tickets ranked by confidence, recommend EDU-1073"
+      "lastMessage": "10 tickets ranked by confidence, recommend EDU-1073",
+      "abortedLastRun": false
     },
     {
       "key": "agent:voice:telegram:group:topic:3",
@@ -42,12 +48,14 @@
       "channel": "telegram",
       "displayName": "Cara HQ / Infrastructure",
       "model": "claude-opus-4-5",
-      "totalTokens": 29965,
-      "updatedAt": 1770447561482,
+      "totalTokens": 45000,
+      "contextTokens": 200000,
+      "updatedAt": 1770448320000,
       "sessionId": "293881cb",
-      "currentTask": "Building Kanban snapshot feature",
-      "lastMessage": "Adding session snapshot button to dashboard"
+      "currentTask": "Enhancing Kanban snapshot with health metrics",
+      "lastMessage": "Adding context usage bars and health indicators",
+      "abortedLastRun": false
     }
   ],
-  "lastUpdated": "2026-02-06T23:05:00.000Z"
+  "lastUpdated": "2026-02-06T23:12:00.000Z"
 }
