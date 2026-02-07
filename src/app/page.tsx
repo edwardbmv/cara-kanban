@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ActivityFeed from '@/components/ActivityFeed';
+import Calendar from '@/components/Calendar';
+import GlobalSearch from '@/components/GlobalSearch';
 
+// ==================== TYPES ====================
 interface Output {
   type: 'file' | 'link';
   path?: string;
@@ -41,6 +45,9 @@ interface BoardData {
   tasks: Task[];
 }
 
+type Tab = 'kanban' | 'activity' | 'calendar' | 'search';
+
+// ==================== HELPERS ====================
 function formatTime(minutes: number): string {
   if (minutes < 60) return `${minutes}m`;
   const hours = Math.floor(minutes / 60);
@@ -58,6 +65,7 @@ function formatDate(dateStr: string | null): string {
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
+// ==================== KANBAN COMPONENTS ====================
 function TaskCard({ task, lane }: { task: Task; lane: Lane }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -130,15 +138,7 @@ function TaskCard({ task, lane }: { task: Task; lane: Lane }) {
   );
 }
 
-function KanbanColumn({ 
-  column, 
-  tasks, 
-  lanes 
-}: { 
-  column: Column; 
-  tasks: Task[]; 
-  lanes: Lane[];
-}) {
+function KanbanColumn({ column, tasks, lanes }: { column: Column; tasks: Task[]; lanes: Lane[] }) {
   const columnTasks = tasks.filter(t => t.column === column.id);
   
   const bgColors: Record<string, string> = {
@@ -178,21 +178,21 @@ function StatsBar({ tasks }: { tasks: Task[] }) {
   const completed = tasks.filter(t => t.column === 'done').length;
 
   return (
-    <div className="flex gap-6 mb-6 text-sm">
+    <div className="flex gap-4 mb-4 text-sm flex-wrap">
       <div className="bg-gray-800 px-4 py-2 rounded-lg">
-        <span className="text-gray-400">Total Time:</span>{' '}
+        <span className="text-gray-400">Time:</span>{' '}
         <span className="text-white font-medium">{formatTime(totalTime)}</span>
       </div>
       <div className="bg-gray-800 px-4 py-2 rounded-lg">
-        <span className="text-gray-400">Total Cost:</span>{' '}
+        <span className="text-gray-400">Cost:</span>{' '}
         <span className="text-white font-medium">${totalCost.toFixed(2)}</span>
       </div>
       <div className="bg-gray-800 px-4 py-2 rounded-lg">
-        <span className="text-gray-400">In Progress:</span>{' '}
+        <span className="text-gray-400">Active:</span>{' '}
         <span className="text-blue-400 font-medium">{inProgress}</span>
       </div>
       <div className="bg-gray-800 px-4 py-2 rounded-lg">
-        <span className="text-gray-400">Completed:</span>{' '}
+        <span className="text-gray-400">Done:</span>{' '}
         <span className="text-green-400 font-medium">{completed}</span>
       </div>
     </div>
@@ -215,16 +215,14 @@ function LaneFilter({ lanes, activeLanes, setActiveLanes }: {
   };
 
   return (
-    <div className="flex gap-2 mb-6">
+    <div className="flex gap-2 mb-4 flex-wrap">
       <span className="text-gray-400 text-sm py-1">Filter:</span>
       {lanes.map(lane => (
         <button
           key={lane.id}
           onClick={() => toggleLane(lane.id)}
           className={`px-3 py-1 rounded-full text-sm transition-colors ${
-            activeLanes.has(lane.id)
-              ? 'text-white'
-              : 'text-gray-500 hover:text-gray-300'
+            activeLanes.has(lane.id) ? 'text-white' : 'text-gray-500 hover:text-gray-300'
           }`}
           style={{
             backgroundColor: activeLanes.has(lane.id) ? lane.color + '40' : 'transparent',
@@ -239,10 +237,9 @@ function LaneFilter({ lanes, activeLanes, setActiveLanes }: {
   );
 }
 
-export default function Home() {
+function KanbanBoard() {
   const [data, setData] = useState<BoardData | null>(null);
   const [activeLanes, setActiveLanes] = useState<Set<string>>(new Set());
-  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
   useEffect(() => {
     fetch('/api/tasks')
@@ -250,26 +247,17 @@ export default function Home() {
       .then((boardData: BoardData) => {
         setData(boardData);
         setActiveLanes(new Set(boardData.lanes.map(l => l.id)));
+      })
+      .catch(() => {
+        // Set empty default if API fails
+        setData({ lanes: [], columns: [], tasks: [] });
       });
-  }, []);
-
-  // Auto-refresh every 30 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      fetch('/api/tasks')
-        .then(res => res.json())
-        .then((boardData: BoardData) => {
-          setData(boardData);
-          setLastUpdated(new Date());
-        });
-    }, 30000);
-    return () => clearInterval(interval);
   }, []);
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-        <div className="text-gray-400">Loading...</div>
+      <div className="flex items-center justify-center py-20">
+        <div className="text-gray-400">Loading kanban board...</div>
       </div>
     );
   }
@@ -277,35 +265,89 @@ export default function Home() {
   const filteredTasks = data.tasks.filter(t => activeLanes.has(t.lane));
 
   return (
-    <div className="min-h-screen bg-gray-950 p-6">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <h1 className="text-2xl font-bold text-white mb-1">🐾 Cara&apos;s Workboard</h1>
-            <p className="text-gray-500 text-sm">
-              Last updated: {lastUpdated.toLocaleTimeString()}
-            </p>
+    <div>
+      <StatsBar tasks={filteredTasks} />
+      {data.lanes.length > 0 && (
+        <LaneFilter lanes={data.lanes} activeLanes={activeLanes} setActiveLanes={setActiveLanes} />
+      )}
+      <div className="flex gap-4 overflow-x-auto pb-4">
+        {data.columns.map(column => (
+          <KanbanColumn key={column.id} column={column} tasks={filteredTasks} lanes={data.lanes} />
+        ))}
+        {data.columns.length === 0 && (
+          <div className="text-gray-500 text-center py-10 w-full">
+            No tasks yet. Tasks will appear here as Cara works.
           </div>
-        </div>
-
-        <StatsBar tasks={filteredTasks} />
-        <LaneFilter 
-          lanes={data.lanes} 
-          activeLanes={activeLanes} 
-          setActiveLanes={setActiveLanes} 
-        />
-
-        <div className="flex gap-4 overflow-x-auto pb-4">
-          {data.columns.map(column => (
-            <KanbanColumn
-              key={column.id}
-              column={column}
-              tasks={filteredTasks}
-              lanes={data.lanes}
-            />
-          ))}
-        </div>
+        )}
       </div>
     </div>
+  );
+}
+
+// ==================== MAIN APP ====================
+export default function CaraDashboard() {
+  const [activeTab, setActiveTab] = useState<Tab>('kanban');
+  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLastUpdated(new Date());
+    }, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const tabs: { id: Tab; label: string; icon: string }[] = [
+    { id: 'kanban', label: 'Workboard', icon: '📋' },
+    { id: 'activity', label: 'Activity', icon: '📊' },
+    { id: 'calendar', label: 'Schedule', icon: '📅' },
+    { id: 'search', label: 'Search', icon: '🔍' },
+  ];
+
+  return (
+    <main className="min-h-screen bg-gray-950 text-white">
+      {/* Header */}
+      <header className="bg-gray-900 border-b border-gray-800 px-6 py-4">
+        <div className="max-w-[1600px] mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">🐾</span>
+            <div>
+              <h1 className="text-2xl font-bold">Cara HQ</h1>
+              <p className="text-sm text-gray-400">Mission Control & Workboard</p>
+            </div>
+          </div>
+          <div className="text-sm text-gray-400">
+            {lastUpdated.toLocaleTimeString()}
+          </div>
+        </div>
+      </header>
+
+      {/* Tab Navigation */}
+      <nav className="bg-gray-900 border-b border-gray-800">
+        <div className="max-w-[1600px] mx-auto flex gap-1 px-6">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-3 text-sm font-medium transition-colors ${
+                activeTab === tab.id
+                  ? 'bg-gray-800 text-white border-b-2 border-blue-500'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+              }`}
+            >
+              <span className="mr-2">{tab.icon}</span>
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      {/* Content */}
+      <div className="max-w-[1600px] mx-auto p-6">
+        {activeTab === 'kanban' && <KanbanBoard />}
+        {activeTab === 'activity' && <ActivityFeed key={lastUpdated.toISOString()} />}
+        {activeTab === 'calendar' && <Calendar key={lastUpdated.toISOString()} />}
+        {activeTab === 'search' && <GlobalSearch />}
+      </div>
+    </main>
   );
 }

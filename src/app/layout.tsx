@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cara's Workboard",
-  description: "Project management dashboard for Cara AI assistant",
+  title: "Cara HQ",
+  description: "Mission Control & Workboard - Activity tracking, scheduling, and task management",
 };
 
 export default function RootLayout({
@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className="dark">
+      <body className="antialiased bg-gray-950 text-white">
         {children}
       </body>
     </html>
