@@ -20,6 +20,7 @@ interface Session {
 interface SessionData {
   sessions: Session[];
   lastUpdated: string | null;
+  live?: boolean;
 }
 
 function formatTime(timestamp: number): string {
@@ -55,7 +56,7 @@ function getKindColor(kind: string): string {
   return colors[kind] || colors.other;
 }
 
-export default function SessionSnapshot({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function SessionSnapshot({ isOpen, onClose, autoLoad = false }: { isOpen: boolean; onClose: () => void; autoLoad?: boolean }) {
   const [data, setData] = useState<SessionData>({ sessions: [], lastUpdated: null });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -70,12 +71,20 @@ export default function SessionSnapshot({ isOpen, onClose }: { isOpen: boolean; 
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/sessions');
+      // Try live endpoint first, falls back to static internally
+      const res = await fetch('/api/live-sessions');
       const json = await res.json();
       setData(json);
     } catch (err) {
-      setError('Failed to fetch sessions');
-      console.error(err);
+      // Fallback to static endpoint
+      try {
+        const res = await fetch('/api/sessions');
+        const json = await res.json();
+        setData({ ...json, live: false });
+      } catch {
+        setError('Failed to fetch sessions');
+        console.error(err);
+      }
     }
     setLoading(false);
   }
@@ -95,10 +104,13 @@ export default function SessionSnapshot({ isOpen, onClose }: { isOpen: boolean; 
               <span>📸</span> Current Snapshot
             </h2>
             <p className="text-sm text-gray-400">
-              {data.lastUpdated 
-                ? `Last synced: ${new Date(data.lastUpdated).toLocaleString()}`
-                : 'No data available - sync required'
-              }
+              {data.live ? (
+                <span className="text-green-400">🟢 Live data • {new Date(data.lastUpdated!).toLocaleTimeString()}</span>
+              ) : data.lastUpdated ? (
+                <span>📁 Static • {new Date(data.lastUpdated).toLocaleString()}</span>
+              ) : (
+                'No data available'
+              )}
             </p>
           </div>
           <div className="flex items-center gap-2">
