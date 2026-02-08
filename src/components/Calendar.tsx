@@ -26,7 +26,6 @@ interface CronJob {
 // Human-readable descriptions for known jobs
 const JOB_DESCRIPTIONS: Record<string, string> = {
   'Email Monitor': 'Checks cara@bluemoonventures.com for new emails every 3 minutes and summarizes unread messages.',
-  'Vercel Data Sync': 'Syncs session and activity data to the Vercel-hosted dashboard every 15 minutes.',
   'Daily Morning Brief': 'Sends Edward a daily summary at 7:30 AM with project status, priorities, and proactive ideas.',
   'Good morning text': 'One-time scheduled good morning message.',
   'Evening Work Session': 'Autonomous 2-hour work session at 10 PM - picks highest priority task and works on it.',
@@ -59,6 +58,30 @@ export default function Calendar() {
   async function fetchCronJobs() {
     setLoading(true);
     try {
+      // Try to fetch directly from local gateway first (live data)
+      const gatewayUrl = localStorage.getItem('openclaw_gateway_url') || 'http://localhost:9315';
+      
+      try {
+        const gatewayRes = await fetch(`${gatewayUrl}/api/cron/list`, {
+          headers: { 'Content-Type': 'application/json' },
+        });
+        
+        if (gatewayRes.ok) {
+          const data = await gatewayRes.json();
+          const transformedJobs = (data.jobs || []).map((job: any) => ({
+            ...job,
+            nextRun: job.state?.nextRunAtMs ? new Date(job.state.nextRunAtMs).toISOString() : job.nextRun,
+            lastRun: job.state?.lastRunAtMs ? new Date(job.state.lastRunAtMs).toISOString() : null,
+          }));
+          setJobs(transformedJobs);
+          setLoading(false);
+          return;
+        }
+      } catch (gatewayError) {
+        console.log('Gateway not reachable, falling back to API');
+      }
+      
+      // Fallback to API route (static data)
       const res = await fetch('/api/cron');
       const data = await res.json();
       setJobs(data.jobs || []);
