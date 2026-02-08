@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import ActivityFeed from '@/components/ActivityFeed';
 import Calendar from '@/components/Calendar';
 import GlobalSearch from '@/components/GlobalSearch';
-import SessionSnapshot from '@/components/SessionSnapshot';
+import SessionSnapshotTab from '@/components/SessionSnapshot';
+import SystemStatsTab from '@/components/SystemStats';
 
 // ==================== TYPES ====================
 interface Output {
@@ -46,7 +47,7 @@ interface BoardData {
   tasks: Task[];
 }
 
-type Tab = 'kanban' | 'activity' | 'calendar' | 'search';
+type Tab = 'snapshot' | 'kanban' | 'activity' | 'calendar' | 'search' | 'system';
 
 // ==================== HELPERS ====================
 function formatTime(minutes: number): string {
@@ -287,11 +288,14 @@ function KanbanBoard() {
 
 // ==================== MAIN APP ====================
 export default function CaraDashboard() {
-  const [activeTab, setActiveTab] = useState<Tab>('kanban');
-  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
-  const [snapshotOpen, setSnapshotOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<Tab>('snapshot');
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [mounted, setMounted] = useState(false);
 
+  // Only set time after client mount to avoid hydration mismatch
   useEffect(() => {
+    setMounted(true);
+    setLastUpdated(new Date());
     const interval = setInterval(() => {
       setLastUpdated(new Date());
     }, 30000);
@@ -299,9 +303,11 @@ export default function CaraDashboard() {
   }, []);
 
   const tabs: { id: Tab; label: string; icon: string }[] = [
+    { id: 'snapshot', label: 'Snapshot', icon: '📸' },
     { id: 'kanban', label: 'Workboard', icon: '📋' },
     { id: 'activity', label: 'Activity', icon: '📊' },
     { id: 'calendar', label: 'Schedule', icon: '📅' },
+    { id: 'system', label: 'System', icon: '🖥️' },
     { id: 'search', label: 'Search', icon: '🔍' },
   ];
 
@@ -317,16 +323,8 @@ export default function CaraDashboard() {
               <p className="text-sm text-gray-400">Mission Control & Workboard</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setSnapshotOpen(true)}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
-            >
-              <span>📸</span> Current Snapshot
-            </button>
-            <div className="text-sm text-gray-400">
-              {lastUpdated.toLocaleTimeString()}
-            </div>
+          <div className="text-sm text-gray-400">
+            {mounted && lastUpdated ? lastUpdated.toLocaleTimeString() : '--:--:-- --'}
           </div>
         </div>
       </header>
@@ -353,14 +351,13 @@ export default function CaraDashboard() {
 
       {/* Content */}
       <div className="max-w-[1600px] mx-auto p-6">
+        {activeTab === 'snapshot' && <SessionSnapshotTab key={lastUpdated?.toISOString() ?? 'init'} />}
         {activeTab === 'kanban' && <KanbanBoard />}
-        {activeTab === 'activity' && <ActivityFeed key={lastUpdated.toISOString()} />}
-        {activeTab === 'calendar' && <Calendar key={lastUpdated.toISOString()} />}
+        {activeTab === 'activity' && <ActivityFeed key={lastUpdated?.toISOString() ?? 'init'} />}
+        {activeTab === 'calendar' && <Calendar key={lastUpdated?.toISOString() ?? 'init'} />}
+        {activeTab === 'system' && <SystemStatsTab key={lastUpdated?.toISOString() ?? 'init'} />}
         {activeTab === 'search' && <GlobalSearch />}
       </div>
-
-      {/* Session Snapshot Modal */}
-      <SessionSnapshot isOpen={snapshotOpen} onClose={() => setSnapshotOpen(false)} />
     </main>
   );
 }

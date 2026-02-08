@@ -1,6 +1,5 @@
 [
   {"id": "6de0bf70-06e6-4b68-984d-22639557f48f", "name": "Email Monitor", "enabled": true, "schedule": {"kind": "every", "everyMs": 180000}, "nextRun": "every 3 min"},
-  {"id": "9e3e8750-5937-46c2-a1ea-4c3cecb14b8f", "name": "Vercel Data Sync", "enabled": true, "schedule": {"kind": "every", "everyMs": 900000}, "nextRun": "every 15 min"},
   {"id": "aa93f2b5-c7f6-4107-b463-6a3530e002ce", "name": "Daily Morning Brief", "enabled": true, "schedule": {"kind": "cron", "expr": "30 7 * * *", "tz": "America/Los_Angeles"}, "nextRun": "7:30 AM daily"},
   {"id": "0f7211ef-5aa3-4e9d-90b4-7f5853830a62", "name": "Good morning text", "enabled": true, "schedule": {"kind": "at", "at": "2026-02-07T16:30:00.000Z"}, "nextRun": "8:30 AM today (Feb 7)"},
   {"id": "1cc0fd48-2313-47fd-b3ec-3545b22a67c1", "name": "Evening Work Session", "enabled": true, "schedule": {"kind": "cron", "expr": "0 22 * * *", "tz": "America/Los_Angeles"}, "nextRun": "10:00 PM daily"},

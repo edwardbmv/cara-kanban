@@ -23,13 +23,36 @@ interface CronJob {
   lastRun?: string;
 }
 
+// Human-readable descriptions for known jobs
+const JOB_DESCRIPTIONS: Record<string, string> = {
+  'Email Monitor': 'Checks cara@bluemoonventures.com for new emails every 3 minutes and summarizes unread messages.',
+  'Vercel Data Sync': 'Syncs session and activity data to the Vercel-hosted dashboard every 15 minutes.',
+  'Daily Morning Brief': 'Sends Edward a daily summary at 7:30 AM with project status, priorities, and proactive ideas.',
+  'Good morning text': 'One-time scheduled good morning message.',
+  'Evening Work Session': 'Autonomous 2-hour work session at 10 PM - picks highest priority task and works on it.',
+  'End of Day Export': 'Archives the full day\'s transcript and creates a summary at 3 AM.',
+  'Cara Resurrection Bundle': 'Creates a backup of all critical files at 3 AM for disaster recovery.',
+  'TEAS Daily Nurture Emails': 'Triggers the TEAS platform to send daily study reminder emails to users at 7 AM.',
+  'Weekly Strategic Review': 'Deep analysis of weekly progress and strategic planning every Sunday at 6 PM.',
+  'OpenClaw Update Check & Analysis': 'Checks for OpenClaw updates every 3 days and analyzes if safe to upgrade.',
+  'TEAS Question Reports Check': 'Monitors for user-reported question issues every 30 minutes and emails Edward if any found.',
+  'Social Media Warming - Morning': 'Account warming at 10 AM - rotates platforms daily (X, Instagram, TikTok, Facebook).',
+  'Social Media Warming - Afternoon': 'Second warming session at 2 PM on a different platform.',
+  'Twilio SMS Check': 'Monitors incoming SMS every 15 minutes (read-only, no command execution).',
+  'Proxy fix follow-up': 'Reminder to verify the nurse.org proxy fix is working.',
+  'Security config reminder': 'Reminder to review security hardening options.',
+};
+
 export default function Calendar() {
   const [jobs, setJobs] = useState<CronJob[]>([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'list' | 'week'>('list');
-  const [currentWeek, setCurrentWeek] = useState(new Date());
+  const [currentWeek, setCurrentWeek] = useState<Date | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    setCurrentWeek(new Date());
     fetchCronJobs();
   }, []);
 
@@ -93,7 +116,17 @@ export default function Calendar() {
     });
   }
 
-  const weekDays = getWeekDays(currentWeek);
+  const weekDays = currentWeek ? getWeekDays(currentWeek) : [];
+  const today = mounted ? new Date() : null;
+
+  if (!mounted) {
+    return (
+      <div className="bg-gray-800 rounded-lg border border-gray-700 p-8 text-center text-gray-400">
+        <div className="animate-spin inline-block w-6 h-6 border-2 border-gray-400 border-t-transparent rounded-full mb-2"></div>
+        <p>Loading calendar...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
@@ -162,15 +195,15 @@ export default function Calendar() {
                       </span>
                       {job.nextRun && (
                         <p className="text-xs text-gray-500 mt-1">
-                          Next: {new Date(job.nextRun).toLocaleString()}
+                          Next: {isNaN(new Date(job.nextRun).getTime()) 
+                            ? job.nextRun 
+                            : new Date(job.nextRun).toLocaleString()}
                         </p>
                       )}
                     </div>
                   </div>
-                  <div className="mt-2 text-sm text-gray-500">
-                    <span className="font-mono bg-gray-700/50 px-2 py-1 rounded">
-                      {job.payload.text || job.payload.message || 'No payload'}
-                    </span>
+                  <div className="mt-2 text-sm text-gray-400">
+                    {JOB_DESCRIPTIONS[job.name] || job.payload?.text || job.payload?.message || 'No description available'}
                   </div>
                 </div>
               ))}
@@ -212,7 +245,7 @@ export default function Calendar() {
           <div className="grid grid-cols-7 divide-x divide-gray-700">
             {weekDays.map((day, idx) => {
               const dayJobs = getJobsForDay(day);
-              const isToday = day.toDateString() === new Date().toDateString();
+              const isToday = today ? day.toDateString() === today.toDateString() : false;
               
               return (
                 <div key={idx} className={`min-h-32 p-2 ${isToday ? 'bg-blue-900/20' : ''}`}>

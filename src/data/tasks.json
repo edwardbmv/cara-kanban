@@ -235,6 +235,66 @@
       "updatedAt": "2026-01-31T23:51:00Z",
       "startedAt": null,
       "completedAt": null
+    },
+    {
+      "id": "task-015",
+      "title": "Full Beaker AI Fleet (30-person company)",
+      "description": "Deploy AI agents to serve 30-person company. NOT 30 agents — 7 role-based agents serving teams. Architecture: Chief of Staff (Opus) + Mortgage Lead + Education Lead + Engineering + Marketing + Support + Analytics agents. Each dept shares 1 agent via Slack channels. Ref: @rahulsood fleet article.",
+      "lane": "infra",
+      "column": "ideas",
+      "timeSpent": 30,
+      "costEstimate": 500.00,
+      "outputs": [
+        { "type": "link", "url": "https://x.com/rahulsood/status/2018394405028364384", "label": "Rahul Sood Fleet Article" }
+      ],
+      "createdAt": "2026-02-07T07:37:00Z",
+      "updatedAt": "2026-02-07T07:37:00Z",
+      "startedAt": null,
+      "completedAt": null
+    },
+    {
+      "id": "task-016",
+      "title": "AI Fleet: Slack Integration + Audit Logging",
+      "description": "Configure OpenClaw agents with Slack. Each dept gets: (1) shared channel for team questions, (2) private topics/threads for 1:1. ALL conversations logged to /audit/{agent}/{date}.md for Edward to review. No black boxes — full transcript audit capability.",
+      "lane": "infra",
+      "column": "ideas",
+      "timeSpent": 0,
+      "costEstimate": 50.00,
+      "outputs": [],
+      "createdAt": "2026-02-07T07:37:00Z",
+      "updatedAt": "2026-02-07T07:37:00Z",
+      "startedAt": null,
+      "completedAt": null
+    },
+    {
+      "id": "task-017",
+      "title": "AI Fleet: Hardware Setup",
+      "description": "Options: (A) Single Mac Studio M2 Ultra 64GB ~$4K — all 7 agents as separate macOS users, or (B) 2-3 Mac Minis for redundancy ~$2-3K. Primary agent manages fleet, scoped sudo for restart/update. Subordinates have zero sudo.",
+      "lane": "infra",
+      "column": "ideas",
+      "timeSpent": 0,
+      "costEstimate": 4000.00,
+      "outputs": [],
+      "createdAt": "2026-02-07T07:37:00Z",
+      "updatedAt": "2026-02-07T07:37:00Z",
+      "startedAt": null,
+      "completedAt": null
+    },
+    {
+      "id": "task-018",
+      "title": "AI Fleet: SOUL.md Templates",
+      "description": "Create role-specific SOUL.md templates for each agent type: Chief of Staff, Mortgage Lead, Education Lead, Engineering, Marketing, Support, Analytics. Define personality, boundaries, domain expertise, escalation rules.",
+      "lane": "infra",
+      "column": "done",
+      "timeSpent": 15,
+      "costEstimate": 2.00,
+      "outputs": [
+        { "type": "file", "path": "projects/ai-fleet-templates/", "label": "7 SOUL.md Templates + README" }
+      ],
+      "createdAt": "2026-02-07T07:37:00Z",
+      "updatedAt": "2026-02-07T07:48:00Z",
+      "startedAt": "2026-02-07T07:40:00Z",
+      "completedAt": "2026-02-07T07:48:00Z"
     }
   ]
 }
